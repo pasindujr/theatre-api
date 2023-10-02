@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AllocateSeatController;
 use App\Http\Controllers\Api\V1\VenueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,4 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/v1/venues',[VenueController::class, 'index']);
+//create route group with prefix v1
+Route::prefix('v1')->group(function () {
+    Route::get('/venues',[VenueController::class, 'index']);
+    Route::get('/{venue}/{day}/{showtime}',[AllocateSeatController::class, 'index']);
+});
+
+

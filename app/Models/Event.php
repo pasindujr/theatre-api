@@ -31,6 +31,9 @@ class Event extends Model
         return $this->belongsTo(Day::class);
     }
 
-
+    public function seatAllocations()
+    {
+        return $this->hasMany(SeatAllocation::class);
+    }
 
 }

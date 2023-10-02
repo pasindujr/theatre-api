@@ -5,14 +5,14 @@ namespace App\Http\Resources\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class VenueResource extends JsonResource
+class ShowtimeResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'seating_capacity' => $this->seating_capacity,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time,
         ];
     }
 }
