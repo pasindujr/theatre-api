@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         // WithoutModelEvents::class,
         $this->call([
+            UserSeeder::class,
             VenueSeeder::class,
             ShowtimeSeeder::class,
             DaySeeder::class,

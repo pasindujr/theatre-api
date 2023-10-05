@@ -19,6 +19,7 @@ class VenueFactory extends Factory
         return [
             'name' => $this->faker->company,
             'seating_capacity' => $this->faker->numberBetween(100, 5000),
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
         ];
     }
 }
