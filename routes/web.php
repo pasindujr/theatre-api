@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\V1\VenueController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +27,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    Route::get('venue/create', [VenueController::class, 'create'])->name('venue.create');
+    Route::post('venue/save', [VenueController::class, 'save'])->name('venue.save');
+    Route::get('venue/edit', [VenueController::class, 'edit'])->name('venue.edit');
+    Route::post('venue/update', [VenueController::class, 'update'])->name('venue.update');
 
-    Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
-    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 });

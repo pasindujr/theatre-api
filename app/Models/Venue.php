@@ -12,6 +12,7 @@ class Venue extends Model
     protected $fillable = [
         'name',
         'seating_capacity',
+        'user_id',
     ];
 
     public function events()
