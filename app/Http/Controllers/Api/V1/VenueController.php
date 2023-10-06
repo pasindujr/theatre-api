@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VenueRequest;
 use App\Http\Resources\V1\VenueResource;
 use App\Models\Venue;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class VenueController extends Controller
@@ -37,6 +36,8 @@ class VenueController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
+        toast('Venue Created!','success');
+
         return redirect()->route('venue.edit')->with('success', 'Venue created successfully');
     }
 
@@ -62,6 +63,8 @@ class VenueController extends Controller
                 'name' => $request->name,
                 'seating_capacity' => $request->capacity,
             ]);
+
+        toast('Venue Edited!','success');
 
         return redirect()->route('venue.edit')->with('success', 'Venue updated successfully');
     }
