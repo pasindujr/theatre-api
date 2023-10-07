@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\EventController;
 use App\Http\Controllers\Api\V1\VenueController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -34,4 +35,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('events/create', [EventController::class, 'create'])->name('events.create');
 });

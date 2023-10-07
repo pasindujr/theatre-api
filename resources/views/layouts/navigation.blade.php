@@ -42,6 +42,15 @@
                 <span class="sidebar-text">{{ __('Update Venue') }}</span>
             </a>
         </li>
+
+        <li class="nav-item {{ request()->routeIs('events.create') ? 'active' : '' }}">
+            <a href="{{ route('events.create') }}" class="nav-link">
+            <span class="sidebar-icon me-3">
+                <i class="fas fa-user-alt fa-fw"></i>
+            </span>
+                <span class="sidebar-text">{{ __('Create Events') }}</span>
+            </a>
+        </li>
     @endcan
 
     <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
