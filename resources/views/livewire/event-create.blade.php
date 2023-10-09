@@ -6,7 +6,7 @@
 
             <div class="col-6">
                 <form action="{{ route('venue.save') }}" method="post">
-                    @csrf
+
                     <div class="mb-4 ">
                         <label for="startdate">Start Date</label>
                         <input type="date" name="startdate" class="form-control"
@@ -26,18 +26,52 @@
                     @endif
 
                     @if($areDatesFilled)
-                        <label>Select Show Times</label>
-                        @foreach($showTimes as $showtime)
-                            <div class="form-check">
-                                <input wire:click="addShowtimes({{ $showtime->id }})" class="form-check-input"
-                                       type="checkbox" value="{{ $showtime->id }}" id="showTime{{ $showtime->id }}">
-                                <label class="form-check-label" for="showTime{{ $showtime->id }}">
-                                    {{ $showtime->start_time }} - {{ $showtime->end_time }}
-                                </label>
+                        @if($showTimes->count() > 0)
+                            <label>Select Show Times</label>
+                            @foreach($showTimes as $showtime)
+                                <div class="form-check">
+                                    <input wire:click="addShowtimes({{ $showtime->id }})" class="form-check-input"
+                                           type="checkbox" value="{{ $showtime->id }}" id="showTime{{ $showtime->id }}">
+                                    <label class="form-check-label" for="showTime{{ $showtime->id }}">
+                                        {{ $showtime->start_time }} - {{ $showtime->end_time }}
+                                    </label>
+                                </div>
+                            @endforeach
+                            <div class="mb-4 ">
+                                <label for="starttime">Start Time</label>
+                                <input type="time" name="starttime" class="form-control"
+                                       id="starttime"
+                                       required wire:model.blur="startTime">
+
                             </div>
-                        @endforeach
-                        @if(!$areShowTimesFilled)
-                            <button wire:click.prevent="addName()" class="btn btn-tertiary">Next</button>
+                            <div class="mb-3">
+                                <label for="endtime">End Time</label>
+                                <input type="time" name="endtime"
+                                       class="form-control" id="endtime" wire:model.blur="endTime" required>
+
+                            </div>
+                            <button wire:click.prevent="createShowTimes()" class="btn btn-tertiary">Save New Show Time</button>
+                            @if(!$areShowTimesFilled)
+                                <button wire:click.prevent="addName()" class="btn btn-tertiary">Next</button>
+                            @endif
+                        @else
+                            <div class="alert alert-danger" role="alert">
+                                No Show Times Available. Add Some.
+                            </div>
+                            <div class="mb-4 ">
+                                <label for="starttime">Start Time</label>
+                                <input type="time" name="starttime" class="form-control"
+                                       id="starttime"
+                                       required wire:model.blur="startTime">
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="endtime">End Time</label>
+                                <input type="time" name="endtime"
+                                       class="form-control" id="endtime" wire:model.blur="endTime" required>
+
+                            </div>
+                            <button wire:click.prevent="createShowTimes()" class="btn btn-tertiary">Save Show Time</button>
                         @endif
                     @endif
 

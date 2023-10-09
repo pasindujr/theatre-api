@@ -21,19 +21,33 @@ class EventCreate extends Component
     public Collection $showTimes;
     public array $showTimesArray = [];
     public string $eventName;
+    public $startTime;
+    public $endTime;
 
     public function openShowtime()
     {
         if ($this->startDate && $this->endDate) {
             $this->areDatesFilled = true;
             $this->showTimes = Showtime::select(['id', 'start_time', 'end_time'])
+                ->where('user_id', auth()->user()->id)
                 ->get();
         }
     }
 
+    public function createShowTimes()
+    {
+        $showtime = new Showtime();
+        $showtime->start_time = $this->startTime;
+        $showtime->end_time = $this->endTime;
+        $showtime->user_id = auth()->user()->id;
+        $showtime->save();
+
+        $this->openShowtime();
+    }
+
     public function addShowtimes($showtimeId)
     {
-        // if shpwtimeid contains in array then remove it if not then add it
+        // if showtime id contains in array then remove it, if not then add it
         if (in_array($showtimeId, $this->showTimesArray)) {
             $this->showTimesArray = array_diff($this->showTimesArray, [$showtimeId]);
         } else {

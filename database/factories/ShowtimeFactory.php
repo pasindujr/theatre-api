@@ -20,6 +20,7 @@ class ShowtimeFactory extends Factory
             // random time sets the time to a random time between 00:00:00 and 23:59:59
             'start_time' => $this->faker->time(),
             'end_time' => $this->faker->time(),
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
         ];
     }
 }
