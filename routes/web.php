@@ -36,5 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::get('events/create', [EventController::class, 'create'])->name('events.create');
+    Route::view('events/create', 'events.create')->name('events.create');
+
+    Route::get('events', [EventController::class, 'index'])->name('events.index');
 });
