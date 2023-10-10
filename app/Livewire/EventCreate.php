@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Day;
 use App\Models\Event;
+use App\Models\SeatAllocation;
 use App\Models\Showtime;
 use DateInterval;
 use DatePeriod;
@@ -65,36 +66,46 @@ class EventCreate extends Component
     {
         $dayId = 0;
         $venueId = auth()->user()->venue->id;
+        $seatingCapacity = auth()->user()->venue->seating_capacity;
 
         // all dates between start and end date
-        $begin = new DateTime( $this->startDate);
-        $end = new DateTime( $this->endDate);
-        $end = $end->modify( '+1 day' );
+        $begin = new DateTime($this->startDate);
+        $end = new DateTime($this->endDate);
+        $end = $end->modify('+1 day');
 
         $interval = new DateInterval('P1D');
-        $period = new DatePeriod($begin, $interval ,$end);
+        $period = new DatePeriod($begin, $interval, $end);
 
         foreach ($period as $key => $date) {
-           if (Day::where('date', $date)->exists()) {
-               $dayId = Day::where('date', $date)->first()->id;
-           } else {
+            if (Day::where('date', $date)->exists()) {
+                $dayId = Day::where('date', $date)->first()->id;
+            } else {
                 $day = new Day();
                 $day->date = $date;
                 $day->save();
                 $dayId = $day->id;
-           }
+            }
 
-           foreach ($this->showTimesArray as $showTimeId) {
-               $event = new Event();
-               $event->name = $this->eventName;
-               $event->day_id = $dayId;
-               $event->showtime_id = $showTimeId;
-               $event->venue_id = $venueId;
-               $event->save();
-           }
+            foreach ($this->showTimesArray as $showTimeId) {
+                $event = new Event();
+                $event->name = $this->eventName;
+                $event->day_id = $dayId;
+                $event->showtime_id = $showTimeId;
+                $event->venue_id = $venueId;
+                $event->save();
+
+                $eventId = $event->id;
+
+                for ($i = 1; $i <= $seatingCapacity; $i++) {
+                    $seatAllocation = new SeatAllocation();
+                    $seatAllocation->event_id = $eventId;
+                    $seatAllocation->seat_number = $i;
+                    $seatAllocation->is_reserved = false;
+                    $seatAllocation->save();
+                }
+            }
         }
-
-        toast('Events Created!','success');
+        toast('Events and Seats Created!', 'success');
         $this->redirect(route('events.create'));
     }
 
