@@ -25,7 +25,7 @@
                                 <td>{{ $event->day->date }}</td>
                                 <td>{{ $event->showtime->start_time }}</td>
                                 <td>{{ $event->showtime->end_time }}</td>
-                                <td>Edinburgh</td>
+                                <td><a href="{{ route('events.show', $event->id) }}">Show</a></td>
                             </tr>
 
                         @endforeach

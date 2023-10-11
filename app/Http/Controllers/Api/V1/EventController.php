@@ -14,9 +14,12 @@ class EventController extends Controller
         $events = Event::where('venue_id', auth()->user()->venue->id)
             ->get();
 
-//dd($events[2]->day->date);
-
         return view('events.index', compact('events'));
+    }
+
+    public function show(Event $event)
+    {
+        return view('events.show', compact('event'));
     }
 
 }
