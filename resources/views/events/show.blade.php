@@ -8,7 +8,7 @@
             <div class="container row justify-content-center">
 
                 <div class="table-responsive py-4">
-                {{ $event }}
+                <livewire:seat-allocation-table :eventId="$event->id"/>
                 </div>
             </div>
 

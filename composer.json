@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.0",
         "livewire/livewire": "^3.0",
+        "rappasoft/laravel-livewire-tables": "3.0.0-beta.2",
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {
