@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\Event;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
