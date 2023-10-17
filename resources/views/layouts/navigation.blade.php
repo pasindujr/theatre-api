@@ -5,7 +5,7 @@
                 <img src="{{ asset('images/brand/light.svg') }}" height="20" width="20" alt="Volt Logo">
             </span>
             <span class="mt-1 ms-1 sidebar-text">
-                Volt Laravel
+                Theatre API
             </span>
         </a>
     </li>
