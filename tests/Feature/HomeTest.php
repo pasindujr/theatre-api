@@ -7,7 +7,6 @@ uses(LazilyRefreshDatabase::class);
 
 it('redirects to home if logged in', function () {
 
-
     $user = User::factory()->create();
 
     $this->actingAs($user)
