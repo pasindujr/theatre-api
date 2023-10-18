@@ -25,11 +25,16 @@ class AllocateSeatController extends Controller
 
     }
 
-    public function store(Event $event, Request $request)
+    /**
+     * Allocate seats.
+     *
+     * Allocate seats for the event
+     */
+    public function store(Event $event, AllocateSeatRequest $request)
     {
 
         //create an array using $request->query('seat'), it has values separated by comma
-        $seats = explode(',', $request->query('seat'));
+        $seats = explode(',', $request->seats);
 
         // $seats is an array having ids of seats, we can use it to update the is_reserved column to true
         $allocatedSeats = SeatAllocation::whereIn('id', $seats)
