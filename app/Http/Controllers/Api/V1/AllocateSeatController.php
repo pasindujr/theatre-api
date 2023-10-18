@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AllocateSeatRequest;
 use App\Http\Resources\V1\EventResource;
 use App\Models\Day;
 use App\Models\Event;
@@ -11,8 +12,23 @@ use App\Models\Showtime;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group Allocate Seats
+ *
+ * APIs for allocating seats
+ */
 class AllocateSeatController extends Controller
 {
+
+    /**
+     * Get all seats.
+     *
+     * List all seats in for the event
+     *
+     * @response status=200 scenario="success" {"data":{"id":4,"event_name":"Bethel Robel","venue":{"id":19,"name":"Bogisich PLC","seating_capacity":2172},"showtime":{"id":7,"start_time":"09:16:20","end_time":"16:10:39"},"day":{"id":9,"date":"2003-05-09"},"seat_allocations":[{"id":28,"seat_number":29,"is_reserved":1},{"id":86,"seat_number":152,"is_reserved":1},{"id":91,"seat_number":271,"is_reserved":1}]}}
+     *
+     */
     public function index(Venue $venue, Day $day, Showtime $showtime)
     {
         $event = Event::where([
@@ -32,7 +48,6 @@ class AllocateSeatController extends Controller
      */
     public function store(Event $event, AllocateSeatRequest $request)
     {
-
         //create an array using $request->query('seat'), it has values separated by comma
         $seats = explode(',', $request->seats);
 

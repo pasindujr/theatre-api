@@ -1,0 +1,238 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "yourdomain.com"
+        }
+    ],
+    "info": {
+        "name": "TheatreAPI",
+        "_postman_id": "b164d159-ad07-4d18-9333-6b7b2133da13",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Allocate Seats",
+            "description": "\nAPIs for allocating seats",
+            "item": [
+                {
+                    "name": "Get all seats.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/:venue_id\/:day_id\/:showtime_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/:venue_id\/:day_id\/:showtime_id",
+                            "variable": [
+                                {
+                                    "id": "venue_id",
+                                    "key": "venue_id",
+                                    "value": "1",
+                                    "description": "The ID of the venue."
+                                },
+                                {
+                                    "id": "day_id",
+                                    "key": "day_id",
+                                    "value": "1",
+                                    "description": "The ID of the day."
+                                },
+                                {
+                                    "id": "showtime_id",
+                                    "key": "showtime_id",
+                                    "value": "1",
+                                    "description": "The ID of the showtime."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "List all seats in for the event",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":4,\"event_name\":\"Bethel Robel\",\"venue\":{\"id\":19,\"name\":\"Bogisich PLC\",\"seating_capacity\":2172},\"showtime\":{\"id\":7,\"start_time\":\"09:16:20\",\"end_time\":\"16:10:39\"},\"day\":{\"id\":9,\"date\":\"2003-05-09\"},\"seat_allocations\":[{\"id\":28,\"seat_number\":29,\"is_reserved\":1},{\"id\":86,\"seat_number\":152,\"is_reserved\":1},{\"id\":91,\"seat_number\":271,\"is_reserved\":1}]}}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Allocate seats.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/events\/:event_id\/allocateseats",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/events\/:event_id\/allocateseats",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"seats\":\"43,45,10\"}"
+                        },
+                        "description": "Allocate seats for the event",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Venue",
+            "description": "\nAPIs for managing venues",
+            "item": [
+                {
+                    "name": "Get all venues.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/venues",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/venues"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "List all venues in the database.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"Wintheiser-Schimmel\",\"seating_capacity\":4733},{\"id\":2,\"name\":\"Gutkowski Ltd\",\"seating_capacity\":3890},{\"id\":3,\"name\":\"Mertz LLC\",\"seating_capacity\":3638},{\"id\":4,\"name\":\"Lockman LLC\",\"seating_capacity\":4493},{\"id\":5,\"name\":\"Skiles-Rutherford\",\"seating_capacity\":758},{\"id\":6,\"name\":\"Lockman-Schneider\",\"seating_capacity\":4950},{\"id\":7,\"name\":\"Schamberger-Klocko\",\"seating_capacity\":385},{\"id\":8,\"name\":\"Erdman, Haag and Heathcote\",\"seating_capacity\":4620},{\"id\":9,\"name\":\"Ebert, Connelly and Witting\",\"seating_capacity\":549},{\"id\":10,\"name\":\"Walsh Ltd\",\"seating_capacity\":563},{\"id\":11,\"name\":\"Cummings-Halvorson\",\"seating_capacity\":1510},{\"id\":12,\"name\":\"Rosenbaum, Parisian and Dooley\",\"seating_capacity\":1528},{\"id\":13,\"name\":\"Breitenberg and Sons\",\"seating_capacity\":3208},{\"id\":14,\"name\":\"Hyatt-Fritsch\",\"seating_capacity\":3827},{\"id\":15,\"name\":\"Fisher, Greenfelder and McLaughlin\",\"seating_capacity\":3468},{\"id\":16,\"name\":\"Wiza, Nader and Legros\",\"seating_capacity\":2252},{\"id\":17,\"name\":\"Beatty-Lubowitz\",\"seating_capacity\":3481},{\"id\":18,\"name\":\"Cole PLC\",\"seating_capacity\":147},{\"id\":19,\"name\":\"Bogisich PLC\",\"seating_capacity\":2172},{\"id\":20,\"name\":\"Hintz PLC\",\"seating_capacity\":446},{\"id\":21,\"name\":\"cvenuee1\",\"seating_capacity\":100}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

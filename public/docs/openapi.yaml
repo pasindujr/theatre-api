@@ -1,0 +1,414 @@
+openapi: 3.0.3
+info:
+  title: TheatreAPI
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: yourdomain.com
+paths:
+  '/api/v1/{venue_id}/{day_id}/{showtime_id}':
+    get:
+      summary: 'Get all seats.'
+      operationId: getAllSeats
+      description: 'List all seats in for the event'
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 4
+                    event_name: 'Bethel Robel'
+                    venue:
+                      id: 19
+                      name: 'Bogisich PLC'
+                      seating_capacity: 2172
+                    showtime:
+                      id: 7
+                      start_time: '09:16:20'
+                      end_time: '16:10:39'
+                    day:
+                      id: 9
+                      date: '2003-05-09'
+                    seat_allocations:
+                      -
+                        id: 28
+                        seat_number: 29
+                        is_reserved: 1
+                      -
+                        id: 86
+                        seat_number: 152
+                        is_reserved: 1
+                      -
+                        id: 91
+                        seat_number: 271
+                        is_reserved: 1
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 4
+                      event_name:
+                        type: string
+                        example: 'Bethel Robel'
+                      venue:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 19
+                          name:
+                            type: string
+                            example: 'Bogisich PLC'
+                          seating_capacity:
+                            type: integer
+                            example: 2172
+                      showtime:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 7
+                          start_time:
+                            type: string
+                            example: '09:16:20'
+                          end_time:
+                            type: string
+                            example: '16:10:39'
+                      day:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 9
+                          date:
+                            type: string
+                            example: '2003-05-09'
+                      seat_allocations:
+                        type: array
+                        example:
+                          -
+                            id: 28
+                            seat_number: 29
+                            is_reserved: 1
+                          -
+                            id: 86
+                            seat_number: 152
+                            is_reserved: 1
+                          -
+                            id: 91
+                            seat_number: 271
+                            is_reserved: 1
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 28
+                            seat_number:
+                              type: integer
+                              example: 29
+                            is_reserved:
+                              type: integer
+                              example: 1
+      tags:
+        - 'Allocate Seats'
+      security: []
+    parameters:
+      -
+        in: path
+        name: venue_id
+        description: 'The ID of the venue.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: day_id
+        description: 'The ID of the day.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: showtime_id
+        description: 'The ID of the showtime.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/events/{event_id}/allocateseats':
+    post:
+      summary: 'Allocate seats.'
+      operationId: allocateSeats
+      description: 'Allocate seats for the event'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Allocate Seats'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seats:
+                  type: string
+                  description: 'The seat IDs should be separated by comma.'
+                  example: '43,45,10'
+              required:
+                - seats
+      security: []
+    parameters:
+      -
+        in: path
+        name: event_id
+        description: 'The ID of the event.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/venues:
+    get:
+      summary: 'Get all venues.'
+      operationId: getAllVenues
+      description: 'List all venues in the database.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: Wintheiser-Schimmel
+                      seating_capacity: 4733
+                    -
+                      id: 2
+                      name: 'Gutkowski Ltd'
+                      seating_capacity: 3890
+                    -
+                      id: 3
+                      name: 'Mertz LLC'
+                      seating_capacity: 3638
+                    -
+                      id: 4
+                      name: 'Lockman LLC'
+                      seating_capacity: 4493
+                    -
+                      id: 5
+                      name: Skiles-Rutherford
+                      seating_capacity: 758
+                    -
+                      id: 6
+                      name: Lockman-Schneider
+                      seating_capacity: 4950
+                    -
+                      id: 7
+                      name: Schamberger-Klocko
+                      seating_capacity: 385
+                    -
+                      id: 8
+                      name: 'Erdman, Haag and Heathcote'
+                      seating_capacity: 4620
+                    -
+                      id: 9
+                      name: 'Ebert, Connelly and Witting'
+                      seating_capacity: 549
+                    -
+                      id: 10
+                      name: 'Walsh Ltd'
+                      seating_capacity: 563
+                    -
+                      id: 11
+                      name: Cummings-Halvorson
+                      seating_capacity: 1510
+                    -
+                      id: 12
+                      name: 'Rosenbaum, Parisian and Dooley'
+                      seating_capacity: 1528
+                    -
+                      id: 13
+                      name: 'Breitenberg and Sons'
+                      seating_capacity: 3208
+                    -
+                      id: 14
+                      name: Hyatt-Fritsch
+                      seating_capacity: 3827
+                    -
+                      id: 15
+                      name: 'Fisher, Greenfelder and McLaughlin'
+                      seating_capacity: 3468
+                    -
+                      id: 16
+                      name: 'Wiza, Nader and Legros'
+                      seating_capacity: 2252
+                    -
+                      id: 17
+                      name: Beatty-Lubowitz
+                      seating_capacity: 3481
+                    -
+                      id: 18
+                      name: 'Cole PLC'
+                      seating_capacity: 147
+                    -
+                      id: 19
+                      name: 'Bogisich PLC'
+                      seating_capacity: 2172
+                    -
+                      id: 20
+                      name: 'Hintz PLC'
+                      seating_capacity: 446
+                    -
+                      id: 21
+                      name: cvenuee1
+                      seating_capacity: 100
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Wintheiser-Schimmel
+                        seating_capacity: 4733
+                      -
+                        id: 2
+                        name: 'Gutkowski Ltd'
+                        seating_capacity: 3890
+                      -
+                        id: 3
+                        name: 'Mertz LLC'
+                        seating_capacity: 3638
+                      -
+                        id: 4
+                        name: 'Lockman LLC'
+                        seating_capacity: 4493
+                      -
+                        id: 5
+                        name: Skiles-Rutherford
+                        seating_capacity: 758
+                      -
+                        id: 6
+                        name: Lockman-Schneider
+                        seating_capacity: 4950
+                      -
+                        id: 7
+                        name: Schamberger-Klocko
+                        seating_capacity: 385
+                      -
+                        id: 8
+                        name: 'Erdman, Haag and Heathcote'
+                        seating_capacity: 4620
+                      -
+                        id: 9
+                        name: 'Ebert, Connelly and Witting'
+                        seating_capacity: 549
+                      -
+                        id: 10
+                        name: 'Walsh Ltd'
+                        seating_capacity: 563
+                      -
+                        id: 11
+                        name: Cummings-Halvorson
+                        seating_capacity: 1510
+                      -
+                        id: 12
+                        name: 'Rosenbaum, Parisian and Dooley'
+                        seating_capacity: 1528
+                      -
+                        id: 13
+                        name: 'Breitenberg and Sons'
+                        seating_capacity: 3208
+                      -
+                        id: 14
+                        name: Hyatt-Fritsch
+                        seating_capacity: 3827
+                      -
+                        id: 15
+                        name: 'Fisher, Greenfelder and McLaughlin'
+                        seating_capacity: 3468
+                      -
+                        id: 16
+                        name: 'Wiza, Nader and Legros'
+                        seating_capacity: 2252
+                      -
+                        id: 17
+                        name: Beatty-Lubowitz
+                        seating_capacity: 3481
+                      -
+                        id: 18
+                        name: 'Cole PLC'
+                        seating_capacity: 147
+                      -
+                        id: 19
+                        name: 'Bogisich PLC'
+                        seating_capacity: 2172
+                      -
+                        id: 20
+                        name: 'Hintz PLC'
+                        seating_capacity: 446
+                      -
+                        id: 21
+                        name: cvenuee1
+                        seating_capacity: 100
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Wintheiser-Schimmel
+                        seating_capacity:
+                          type: integer
+                          example: 4733
+      tags:
+        - Venue
+      security: []
+tags:
+  -
+    name: 'Allocate Seats'
+    description: "\nAPIs for allocating seats"
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Venue
+    description: "\nAPIs for managing venues"

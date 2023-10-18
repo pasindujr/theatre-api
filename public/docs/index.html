@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>TheatreAPI Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var tryItOutBaseUrl = "http://localhost";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-4.25.0.js"></script>
+
+    <script src="../docs/js/theme-default-4.25.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-allocate-seats" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="allocate-seats">
+                    <a href="#allocate-seats">Allocate Seats</a>
+                </li>
+                                    <ul id="tocify-subheader-allocate-seats" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="allocate-seats-GETapi-v1--venue_id---day_id---showtime_id-">
+                                <a href="#allocate-seats-GETapi-v1--venue_id---day_id---showtime_id-">Get all seats.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="allocate-seats-POSTapi-v1-events--event_id--allocateseats">
+                                <a href="#allocate-seats-POSTapi-v1-events--event_id--allocateseats">Allocate seats.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
+                                <a href="#endpoints-GETapi-user">GET api/user</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-venue" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="venue">
+                    <a href="#venue">Venue</a>
+                </li>
+                                    <ul id="tocify-subheader-venue" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="venue-GETapi-v1-venues">
+                                <a href="#venue-GETapi-v1-venues">Get all venues.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: October 18, 2023</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<aside>
+    <strong>Base URL</strong>: <code>yourdomain.com</code>
+</aside>
+<p>This documentation aims to provide all the information you need to work with Event API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="allocate-seats">Allocate Seats</h1>
+
+    <p>APIs for allocating seats</p>
+
+                                <h2 id="allocate-seats-GETapi-v1--venue_id---day_id---showtime_id-">Get all seats.</h2>
+
+<p>
+</p>
+
+<p>List all seats in for the event</p>
+
+<span id="example-requests-GETapi-v1--venue_id---day_id---showtime_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "yourdomain.com/api/v1/1/1/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "yourdomain.com/api/v1/1/1/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1--venue_id---day_id---showtime_id-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 4,
+        &quot;event_name&quot;: &quot;Bethel Robel&quot;,
+        &quot;venue&quot;: {
+            &quot;id&quot;: 19,
+            &quot;name&quot;: &quot;Bogisich PLC&quot;,
+            &quot;seating_capacity&quot;: 2172
+        },
+        &quot;showtime&quot;: {
+            &quot;id&quot;: 7,
+            &quot;start_time&quot;: &quot;09:16:20&quot;,
+            &quot;end_time&quot;: &quot;16:10:39&quot;
+        },
+        &quot;day&quot;: {
+            &quot;id&quot;: 9,
+            &quot;date&quot;: &quot;2003-05-09&quot;
+        },
+        &quot;seat_allocations&quot;: [
+            {
+                &quot;id&quot;: 28,
+                &quot;seat_number&quot;: 29,
+                &quot;is_reserved&quot;: 1
+            },
+            {
+                &quot;id&quot;: 86,
+                &quot;seat_number&quot;: 152,
+                &quot;is_reserved&quot;: 1
+            },
+            {
+                &quot;id&quot;: 91,
+                &quot;seat_number&quot;: 271,
+                &quot;is_reserved&quot;: 1
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1--venue_id---day_id---showtime_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1--venue_id---day_id---showtime_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1--venue_id---day_id---showtime_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1--venue_id---day_id---showtime_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1--venue_id---day_id---showtime_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1--venue_id---day_id---showtime_id-" data-method="GET"
+      data-path="api/v1/{venue_id}/{day_id}/{showtime_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1--venue_id---day_id---showtime_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1--venue_id---day_id---showtime_id-"
+                    onclick="tryItOut('GETapi-v1--venue_id---day_id---showtime_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1--venue_id---day_id---showtime_id-"
+                    onclick="cancelTryOut('GETapi-v1--venue_id---day_id---showtime_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1--venue_id---day_id---showtime_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/{venue_id}/{day_id}/{showtime_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1--venue_id---day_id---showtime_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1--venue_id---day_id---showtime_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>venue_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="venue_id"                data-endpoint="GETapi-v1--venue_id---day_id---showtime_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the venue. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>day_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="day_id"                data-endpoint="GETapi-v1--venue_id---day_id---showtime_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the day. Example: <code>1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>showtime_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="showtime_id"                data-endpoint="GETapi-v1--venue_id---day_id---showtime_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the showtime. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="allocate-seats-POSTapi-v1-events--event_id--allocateseats">Allocate seats.</h2>
+
+<p>
+</p>
+
+<p>Allocate seats for the event</p>
+
+<span id="example-requests-POSTapi-v1-events--event_id--allocateseats">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "yourdomain.com/api/v1/events/1/allocateseats" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"seats\": \"43,45,10\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "yourdomain.com/api/v1/events/1/allocateseats"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "seats": "43,45,10"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-events--event_id--allocateseats">
+</span>
+<span id="execution-results-POSTapi-v1-events--event_id--allocateseats" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-events--event_id--allocateseats"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-events--event_id--allocateseats"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-events--event_id--allocateseats" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-events--event_id--allocateseats">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-events--event_id--allocateseats" data-method="POST"
+      data-path="api/v1/events/{event_id}/allocateseats"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-events--event_id--allocateseats', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-events--event_id--allocateseats"
+                    onclick="tryItOut('POSTapi-v1-events--event_id--allocateseats');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-events--event_id--allocateseats"
+                    onclick="cancelTryOut('POSTapi-v1-events--event_id--allocateseats');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-events--event_id--allocateseats"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/events/{event_id}/allocateseats</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-events--event_id--allocateseats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-events--event_id--allocateseats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>event_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_id"                data-endpoint="POSTapi-v1-events--event_id--allocateseats"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the event. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>seats</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="seats"                data-endpoint="POSTapi-v1-events--event_id--allocateseats"
+               value="43,45,10"
+               data-component="body">
+    <br>
+<p>The seat IDs should be separated by comma. Example: <code>43,45,10</code></p>
+        </div>
+        </form>
+
+                <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-user">GET api/user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "yourdomain.com/api/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "yourdomain.com/api/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-user">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-user" data-method="GET"
+      data-path="api/user"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-user"
+                    onclick="tryItOut('GETapi-user');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-user"
+                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-user"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/user</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                <h1 id="venue">Venue</h1>
+
+    <p>APIs for managing venues</p>
+
+                                <h2 id="venue-GETapi-v1-venues">Get all venues.</h2>
+
+<p>
+</p>
+
+<p>List all venues in the database.</p>
+
+<span id="example-requests-GETapi-v1-venues">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "yourdomain.com/api/v1/venues" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "yourdomain.com/api/v1/venues"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-venues">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Wintheiser-Schimmel&quot;,
+            &quot;seating_capacity&quot;: 4733
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Gutkowski Ltd&quot;,
+            &quot;seating_capacity&quot;: 3890
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Mertz LLC&quot;,
+            &quot;seating_capacity&quot;: 3638
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Lockman LLC&quot;,
+            &quot;seating_capacity&quot;: 4493
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;name&quot;: &quot;Skiles-Rutherford&quot;,
+            &quot;seating_capacity&quot;: 758
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;name&quot;: &quot;Lockman-Schneider&quot;,
+            &quot;seating_capacity&quot;: 4950
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;Schamberger-Klocko&quot;,
+            &quot;seating_capacity&quot;: 385
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;name&quot;: &quot;Erdman, Haag and Heathcote&quot;,
+            &quot;seating_capacity&quot;: 4620
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;name&quot;: &quot;Ebert, Connelly and Witting&quot;,
+            &quot;seating_capacity&quot;: 549
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;name&quot;: &quot;Walsh Ltd&quot;,
+            &quot;seating_capacity&quot;: 563
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;name&quot;: &quot;Cummings-Halvorson&quot;,
+            &quot;seating_capacity&quot;: 1510
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;name&quot;: &quot;Rosenbaum, Parisian and Dooley&quot;,
+            &quot;seating_capacity&quot;: 1528
+        },
+        {
+            &quot;id&quot;: 13,
+            &quot;name&quot;: &quot;Breitenberg and Sons&quot;,
+            &quot;seating_capacity&quot;: 3208
+        },
+        {
+            &quot;id&quot;: 14,
+            &quot;name&quot;: &quot;Hyatt-Fritsch&quot;,
+            &quot;seating_capacity&quot;: 3827
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;name&quot;: &quot;Fisher, Greenfelder and McLaughlin&quot;,
+            &quot;seating_capacity&quot;: 3468
+        },
+        {
+            &quot;id&quot;: 16,
+            &quot;name&quot;: &quot;Wiza, Nader and Legros&quot;,
+            &quot;seating_capacity&quot;: 2252
+        },
+        {
+            &quot;id&quot;: 17,
+            &quot;name&quot;: &quot;Beatty-Lubowitz&quot;,
+            &quot;seating_capacity&quot;: 3481
+        },
+        {
+            &quot;id&quot;: 18,
+            &quot;name&quot;: &quot;Cole PLC&quot;,
+            &quot;seating_capacity&quot;: 147
+        },
+        {
+            &quot;id&quot;: 19,
+            &quot;name&quot;: &quot;Bogisich PLC&quot;,
+            &quot;seating_capacity&quot;: 2172
+        },
+        {
+            &quot;id&quot;: 20,
+            &quot;name&quot;: &quot;Hintz PLC&quot;,
+            &quot;seating_capacity&quot;: 446
+        },
+        {
+            &quot;id&quot;: 21,
+            &quot;name&quot;: &quot;cvenuee1&quot;,
+            &quot;seating_capacity&quot;: 100
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-venues" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-venues"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-venues"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-venues" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-venues">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-venues" data-method="GET"
+      data-path="api/v1/venues"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-venues', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-venues"
+                    onclick="tryItOut('GETapi-v1-venues');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-venues"
+                    onclick="cancelTryOut('GETapi-v1-venues');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-venues"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/venues</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-venues"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-venues"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

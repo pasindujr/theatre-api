@@ -8,8 +8,18 @@ use App\Http\Resources\V1\VenueResource;
 use App\Models\Venue;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ * @group Venue
+ *
+ * APIs for managing venues
+ */
 class VenueController extends Controller
 {
+    /**
+     * Get all venues.
+     *
+     * List all venues in the database.
+     */
     public function index()
     {
         return VenueResource::collection(Venue::all());
