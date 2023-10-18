@@ -360,7 +360,28 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-events--event_id--allocateseats">
-</span>
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;message&quot;: &quot;Seats allocated successfully&quot;,
+        &quot;status&quot;: &quot;success&quot;,
+        &quot;code&quot;: 200,
+        &quot;eventAndSeatData&quot;: {
+            &quot;event&quot;: &quot;Bethel Robel&quot;,
+            &quot;venue&quot;: &quot;Bogisich PLC&quot;,
+            &quot;day&quot;: &quot;2003-05-09&quot;,
+            &quot;startTime&quot;: &quot;09:16:20&quot;,
+            &quot;endTime&quot;: &quot;16:10:39&quot;,
+            &quot;allocatedSeats&quot;: 3
+        }
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-v1-events--event_id--allocateseats" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-v1-events--event_id--allocateseats"></span>:

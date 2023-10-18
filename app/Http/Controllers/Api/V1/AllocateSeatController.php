@@ -10,7 +10,6 @@ use App\Models\Event;
 use App\Models\SeatAllocation;
 use App\Models\Showtime;
 use App\Models\Venue;
-use Illuminate\Http\Request;
 
 
 /**
@@ -45,6 +44,8 @@ class AllocateSeatController extends Controller
      * Allocate seats.
      *
      * Allocate seats for the event
+     *
+     * @response status=200 scenario="success" {"data":{"message":"Seats allocated successfully","status":"success","code":200,"eventAndSeatData":{"event":"Bethel Robel","venue":"Bogisich PLC","day":"2003-05-09","startTime":"09:16:20","endTime":"16:10:39","allocatedSeats":3}}}
      */
     public function store(Event $event, AllocateSeatRequest $request)
     {
