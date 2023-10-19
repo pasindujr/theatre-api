@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\V1\EventController;
-use App\Http\Controllers\Api\V1\VenueController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\VenueController;
 use Illuminate\Support\Facades\Route;
 
 /*

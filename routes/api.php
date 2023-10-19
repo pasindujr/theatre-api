@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AllocateSeatController;
-use App\Http\Controllers\Api\V1\VenueController;
+use App\Http\Controllers\VenueController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

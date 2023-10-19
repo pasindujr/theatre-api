@@ -6,7 +6,6 @@
             <h2 class="mb-4 h5">{{ __('Events') }}</h2>
 
             <div class="container row justify-content-center">
-
                 <div class="table-responsive py-4">
                     <table class="table table-flush" id="datatable">
                         <thead class="thead-light">
@@ -27,7 +26,8 @@
                                 <td>{{ $event->showtime->end_time }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary">More</a>
+                                        <a href="{{ route('events.show', $event->id) }}"
+                                           class="btn btn-primary">More</a>
                                         <button type="button"
                                                 class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +40,7 @@
                                             <span class="visually-hidden">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Endpoint</a></li>
+                                            <li><a class="dropdown-item" href="#">View Endpoint</a></li>
                                         </ul>
                                     </div>
                                 </td>
