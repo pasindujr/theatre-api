@@ -40,7 +40,7 @@
                                             <span class="visually-hidden">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">View Endpoint</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('events.endpoint', $event->id) }}">View Endpoint</a></li>
                                         </ul>
                                     </div>
                                 </td>

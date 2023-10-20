@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EndpointController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VenueController;
@@ -39,4 +40,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('events', [EventController::class, 'index'])->name('events.index');
     Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
+
+    Route::get('events/{event}/endpoint', [EndpointController::class, 'show'])->name('events.endpoint');
 });
