@@ -12,6 +12,8 @@
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Provide this endpoint to vendors to book seats on behalf of you.</label>
                     <input value="{{ $endpoint }}" readonly type="text" class="form-control" id="exampleFormControlInput1" >
+                    <a href="{{ route('events.index') }}" class="btn btn-primary mt-3"><i class="fas fa-backward fa-fw"></i> Back</a>
+                    <a href="{{ route('events.show', $eventId) }}" class="btn btn-primary mt-3"><i class="fas fa-info fa-fw"></i> Seat Info</a>
                 </div>
                 <div class="col-6">
 

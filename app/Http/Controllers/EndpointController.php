@@ -14,8 +14,9 @@ class EndpointController extends Controller
         $day = $event->day->date;
         $showtime = $event->showtime->start_time . ' - ' . $event->showtime->end_time;
         $eventName = $event->name;
+        $eventId = $event->id;
 
-        return view('endpoints.show', compact('endpoint', 'venueName', 'day', 'showtime', 'eventName'));
+        return view('endpoints.show', compact('endpoint', 'venueName', 'day', 'showtime', 'eventName', 'eventId'));
     }
 
 }
