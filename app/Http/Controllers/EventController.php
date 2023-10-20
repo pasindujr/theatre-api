@@ -10,7 +10,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::where('venue_id', auth()->user()->venue->id)
-            ->get();
+            ->paginate(15);
 
         return view('events.index', compact('events'));
     }
