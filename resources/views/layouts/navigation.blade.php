@@ -10,6 +10,7 @@
         </a>
     </li>
 
+    @if(auth()->user()->venue)
     <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
         <a href="{{ route('home') }}" class="nav-link">
             <span class="sidebar-icon">
@@ -22,6 +23,8 @@
             <span class="sidebar-text">{{ __('Dashboard') }}</span>
         </a>
     </li>
+    @endif
+
     @can('create-a-venue')
         <li class="nav-item {{ request()->routeIs('venue.create') ? 'active' : '' }}">
             <a href="{{ route('venue.create') }}" class="nav-link">
